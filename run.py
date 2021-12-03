@@ -43,7 +43,6 @@ def getCookieFromDiskCahe():
     file = open("cache.txt","r")
     returnValue = json.loads(file.read() or "{}")
     file.close()
-
     return returnValue
 
 def writeCookieToDiskCahe(value):
@@ -54,18 +53,10 @@ def writeCookieToDiskCahe(value):
 def checkCacheFileExit():
     return os.path.exists('./cache.txt')
 
-
-
-
-   
 def getAppTOKEN(cooki):
     for x in cooki:
         if(x["name"] == "app_token"):
             return {"app_token":x["value"]}
-
-
-
-
 
 def getClassInfo(cooki):
     resq = requests.get("https://thptnguyenhuuhuanthuduc.lms.vnedu.vn/module/virtualClassroom/service/booking/getBookingCalendarForUser", cookies= getAppTOKEN(cooki))
@@ -87,10 +78,6 @@ def tietInTime(cookie):
     for timeVar in timeToRool:
         if timeVar - 5 <= current <= timeVar:
             return timeToRool.index(timeVar)
-            
-            
-
-
 
 def getRoolCallCookie(cooki,tiet):
     classInfo = getClassInfo(cooki)
